@@ -1,0 +1,40 @@
+:root {
+  --primary-brown: #8b4513;
+  --secondary-yellow: #ffd700;
+  --accent-purple: #9370db;
+  --light-brown: #deb887;
+  --dark-brown: #654321;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  background-color: #f5f5f5;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-brown);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-bottom: 1rem;
+  text-align: center;
+}
