@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { fabric } from "fabric";
 import "./Design.css";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Design() {
   const canvasRef = useRef(null);
@@ -134,7 +135,7 @@ function Design() {
     if (!canvas) return;
 
     try {
-      const text = new fabric.IText("Double click to edit", {
+      const text = new fabric.IText("Nhấp đúp để chỉnh sửa", {
         left: 100,
         top: 100,
         fontFamily: "Arial",
@@ -144,7 +145,8 @@ function Design() {
       canvas.add(text);
       canvas.setActiveObject(text);
     } catch (error) {
-      console.error("Error adding text:", error);
+      console.error("Lỗi khi lưu thiết kế:", error);
+      alert("Lỗi khi lưu thiết kế. Vui lòng thử lại.");
     }
   };
 
@@ -202,10 +204,10 @@ function Design() {
     try {
       const data = canvas.toJSON();
       localStorage.setItem("design", JSON.stringify(data));
-      alert("Design saved successfully!");
+      alert("Lưu thiết kế thành công!");
     } catch (error) {
-      console.error("Error saving design:", error);
-      alert("Error saving design. Please try again.");
+      console.error("Lỗi khi lưu thiết kế:", error);
+      alert("Lỗi khi lưu thiết kế. Vui lòng thử lại.");
     }
   };
 
@@ -229,10 +231,10 @@ function Design() {
       existingCart.push(cartItem);
       localStorage.setItem("cart", JSON.stringify(existingCart));
 
-      alert("Design added to cart!");
+      alert("Đã thêm vào giỏ hàng!");
     } catch (error) {
-      console.error("Error adding to cart:", error);
-      alert("Error adding to cart. Please try again.");
+      console.error("Lỗi khi thêm vào giỏ:", error);
+      alert("Lỗi khi thêm vào giỏ. Vui lòng thử lại.");
     }
   };
 
@@ -247,48 +249,32 @@ function Design() {
       // Navigate to the order page
       navigate("/order");
     } catch (error) {
-      console.error("Error saving design:", error);
-      alert("Error saving design. Please try again.");
+      console.error("Lỗi khi lưu thiết kế:", error);
+      alert("Lỗi khi lưu thiết kế. Vui lòng thử lại.");
     }
   };
 
   return (
     <div className="design-page">
-      <nav className="design-nav">
-        <div className="nav-left">
-          <h1>Pet Fashion Designer</h1>
-        </div>
-        <div className="nav-right">
-          <button onClick={handleSave} className="nav-button">
-            Save Design
-          </button>
-          <button onClick={handleAddToCart} className="nav-button">
-            Add to Cart
-          </button>
-          <button onClick={handleOrder} className="nav-button primary">
-            Order Now
-          </button>
-        </div>
-      </nav>
-
+      <Navbar />
       <div className="design-container">
         {/* Left Toolbar */}
         <div className="toolbar left-toolbar">
           <div className="tool-section">
-            <h3>Clothing Type</h3>
+            <h3>Loại Trang Phục</h3>
             <select
               value={clothingType}
               onChange={(e) => setClothingType(e.target.value)}
               className="tool-select"
             >
-              <option value="tshirt">T-Shirt</option>
-              <option value="hoodie">Hoodie</option>
-              <option value="sweater">Sweater</option>
+              <option value="tshirt">Áo Thun</option>
+              <option value="hoodie">Áo Hoodie</option>
+              <option value="sweater">Áo Len</option>
             </select>
           </div>
 
           <div className="tool-section">
-            <h3>Base Color</h3>
+            <h3>Màu Nền</h3>
             <input
               type="color"
               value={baseColor}
@@ -298,12 +284,12 @@ function Design() {
           </div>
 
           <div className="tool-section">
-            <h3>Add Elements</h3>
+            <h3>Thêm Phần Tử</h3>
             <button onClick={addText} className="tool-button">
-              Add Text
+              Thêm Chữ
             </button>
             <label className="tool-button">
-              Add Image
+              Thêm Hình Ảnh
               <input
                 type="file"
                 accept="image/*"
@@ -314,14 +300,14 @@ function Design() {
           </div>
 
           <div className="tool-section">
-            <h3>Tools</h3>
+            <h3>Công Cụ</h3>
             <button
               onClick={() => setSelectedTool("select")}
               className={`tool-button ${
                 selectedTool === "select" ? "active" : ""
               }`}
             >
-              Select
+              Chọn
             </button>
             <button
               onClick={() => setSelectedTool("move")}
@@ -329,7 +315,7 @@ function Design() {
                 selectedTool === "move" ? "active" : ""
               }`}
             >
-              Move
+              Di Chuyển
             </button>
           </div>
         </div>
@@ -342,14 +328,14 @@ function Design() {
         {/* Right Preview Panel */}
         <div className="toolbar right-toolbar">
           <div className="tool-section">
-            <h3>Pet Preview</h3>
+            <h3>Xem Trước Thú Cưng</h3>
             <select
               value={petType}
               onChange={(e) => setPetType(e.target.value)}
               className="tool-select"
             >
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
+              <option value="dog">Chó</option>
+              <option value="cat">Mèo</option>
             </select>
 
             <select
@@ -357,9 +343,9 @@ function Design() {
               onChange={(e) => setPetSize(e.target.value)}
               className="tool-select"
             >
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
+              <option value="small">Nhỏ</option>
+              <option value="medium">Vừa</option>
+              <option value="large">Lớn</option>
             </select>
 
             <div className="preview-container">

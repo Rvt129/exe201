@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
@@ -10,6 +10,8 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+
     try {
       const response = await fetch("http://localhost:5000/api/login", {
         method: "POST",
@@ -25,21 +27,21 @@ function Login() {
         localStorage.setItem("token", data.token);
         navigate("/");
       } else {
-        setError(data.message);
+        setError(data.message || "Đăng nhập thất bại");
       }
     } catch (err) {
-      setError("An error occurred. Please try again.");
+      setError("Lỗi kết nối server");
     }
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <h2>Welcome Back</h2>
+    <div className="login-page">
+      <div className="login-container">
+        <h1>Đăng Nhập</h1>
+        {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
-          {error && <div className="error-message">{error}</div>}
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email:</label>
             <input
               type="email"
               id="email"
@@ -49,7 +51,7 @@ function Login() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Mật khẩu:</label>
             <input
               type="password"
               id="password"
@@ -59,11 +61,14 @@ function Login() {
             />
           </div>
           <button type="submit" className="login-button">
-            Login
+            Đăng Nhập
           </button>
         </form>
         <p className="register-link">
-          Don't have an account? <a href="/register">Register</a>
+          Chưa có tài khoản?{" "}
+          <Link to="/register" className="link">
+            Đăng ký ngay
+          </Link>
         </p>
       </div>
     </div>

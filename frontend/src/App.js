@@ -11,6 +11,8 @@ import Register from "./components/Register";
 import Design from "./components/Design";
 import Order from "./components/Order";
 import Cart from "./components/Cart";
+import Profile from "./components/Profile";
+import History from "./components/History";
 import "./App.css";
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path="/design" element={<Design />} />
           <Route path="/order" element={<Order />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/History" element={<History />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

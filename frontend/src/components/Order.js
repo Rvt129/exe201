@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 import "./Order.css";
 
 function Order() {
@@ -37,49 +38,50 @@ function Order() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Implement payment processing logic here
-    alert("Order submitted successfully!");
+    alert("Đặt hàng thành công!");
     navigate("/");
   };
 
   return (
     <div className="order-page">
+      <Navbar />
       <div className="order-container">
         {/* Left Section - Design Summary */}
         <div className="design-summary">
-          <h2>Design Summary</h2>
+          <h2>Tóm Tắt Thiết Kế</h2>
           <div className="product-preview">
             <div className="preview-image">
               {/* Placeholder for front view */}
-              <div className="preview-placeholder">Front View</div>
+              <div className="preview-placeholder">Mặt Trước</div>
             </div>
             <div className="preview-image">
               {/* Placeholder for back view */}
-              <div className="preview-placeholder">Back View</div>
+              <div className="preview-placeholder">Mặt Sau</div>
             </div>
           </div>
 
           <div className="design-details">
-            <p className="design-id">Design #19202</p>
-            <p className="brand">Brand: Nike</p>
+            <p className="design-id">Thiết kế #19202</p>
+            <p className="brand">Thương hiệu: Nike</p>
           </div>
 
           <div className="price-breakdown">
-            <h3>Price Breakdown</h3>
+            <h3>Chi Tiết Giá</h3>
             <div className="price-item">
-              <span>Base Price:</span>
-              <span>$160.00</span>
+              <span>Giá cơ bản:</span>
+              <span>3.680.000đ</span>
             </div>
             <div className="price-item">
-              <span>Customization Fee:</span>
-              <span>$15.00</span>
+              <span>Phí tùy chỉnh:</span>
+              <span>345.000đ</span>
             </div>
             <div className="price-item">
-              <span>Shipping Fee:</span>
-              <span>$10.00</span>
+              <span>Phí vận chuyển:</span>
+              <span>230.000đ</span>
             </div>
             <div className="price-item total">
-              <span>Total Amount:</span>
-              <span>$185.00</span>
+              <span>Tổng cộng:</span>
+              <span>4.255.000đ</span>
             </div>
           </div>
         </div>
@@ -88,14 +90,12 @@ function Order() {
         <div className="payment-section">
           <div className="checkout-header">
             <h2>Thanh toán</h2>
-            <p>
-              Complete your purchase by providing us with your payment details
-            </p>
+            <p>Hoàn tất đơn hàng bằng cách cung cấp thông tin thanh toán</p>
           </div>
 
           <form onSubmit={handleSubmit}>
             <div className="payment-methods">
-              <h3>Payment Methods</h3>
+              <h3>Phương Thức Thanh Toán</h3>
               <div className="payment-options">
                 <button
                   type="button"
@@ -124,28 +124,28 @@ function Order() {
                   }`}
                   onClick={() => handlePaymentMethodSelect("cod")}
                 >
-                  <img src="/images/cod.png" alt="Cash on Delivery" />
-                  Cash on Delivery
+                  <img src="/images/cod.png" alt="Thanh toán khi nhận hàng" />
+                  Thanh toán khi nhận hàng
                 </button>
               </div>
             </div>
 
             <div className="delivery-info">
-              <h3>Delivery Information</h3>
+              <h3>Thông Tin Giao Hàng</h3>
               <div className="form-group">
-                <label htmlFor="address">Address</label>
+                <label htmlFor="address">Địa chỉ</label>
                 <input
                   type="text"
                   id="address"
                   name="address"
                   value={deliveryInfo.address}
                   onChange={handleDeliveryInfoChange}
-                  placeholder="e.g., District 9"
+                  placeholder="Ví dụ: Quận 9"
                   required
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="phone">Phone Number</label>
+                <label htmlFor="phone">Số điện thoại</label>
                 <input
                   type="tel"
                   id="phone"
@@ -155,14 +155,14 @@ function Order() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="recipientName">Recipient Name</label>
+                <label htmlFor="recipientName">Tên người nhận</label>
                 <input
                   type="text"
                   id="recipientName"
                   name="recipientName"
                   value={deliveryInfo.recipientName}
                   onChange={handleDeliveryInfoChange}
-                  placeholder="e.g., Emma"
+                  placeholder="Ví dụ: Emma"
                   required
                 />
               </div>
@@ -176,7 +176,7 @@ function Order() {
                 onChange={(e) => setTermsAccepted(e.target.checked)}
               />
               <label htmlFor="terms">
-                I confirm the information above is correct
+                Tôi xác nhận thông tin trên là chính xác
               </label>
             </div>
 
@@ -187,7 +187,7 @@ function Order() {
             >
               Thanh toán
             </button>
-            <p className="security-note">Payments are secured and encrypted</p>
+            <p className="security-note">Thanh toán được bảo mật và mã hóa</p>
           </form>
         </div>
       </div>
