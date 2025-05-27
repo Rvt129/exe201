@@ -1,79 +1,92 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "./History.css";
 
 function History() {
   const [orders, setOrders] = useState([]);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // In a real application, you would fetch order history from your backend
-    // For now, we'll use mock data
-    setOrders([
-      {
-        id: "12345",
-        date: "15/03/2024",
-        status: "Đã giao hàng",
-        total: "1,500,000đ",
-        items: [
-          {
-            name: "Áo thun cho chó",
-            quantity: 2,
-            price: "750,000đ",
+    const fetchOrders = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          navigate("/login");
+          return;
+        }
+
+        const response = await fetch("http://localhost:5000/api/orders", {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        ],
-      },
-      {
-        id: "12344",
-        date: "10/03/2024",
-        status: "Đang giao hàng",
-        total: "2,000,000đ",
-        items: [
-          {
-            name: "Váy cho mèo",
-            quantity: 1,
-            price: "2,000,000đ",
-          },
-        ],
-      },
-    ]);
-  }, []);
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch orders");
+        }
+
+        const data = await response.json();
+        setOrders(data);
+      } catch (err) {
+        setError("Không thể tải lịch sử đơn hàng");
+        console.error("Error fetching orders:", err);
+      }
+    };
+
+    fetchOrders();
+  }, [navigate]);
 
   return (
     <div className="history-page">
       <Navbar />
       <div className="history-container">
         <h1>Lịch Sử Đơn Hàng</h1>
+        {error && <div className="error-message">{error}</div>}
         <div className="orders-list">
-          {orders.map((order) => (
-            <div key={order.id} className="order-card">
-              <div className="order-header">
-                <div className="order-info">
-                  <span className="order-id">Đơn hàng #{order.id}</span>
-                  <span className="order-date">{order.date}</span>
-                </div>
-                <span
-                  className={`order-status ${
-                    order.status === "Đã giao hàng" ? "delivered" : "shipping"
-                  }`}
-                >
-                  {order.status}
-                </span>
-              </div>
-              <div className="order-items">
-                {order.items.map((item, index) => (
-                  <div key={index} className="order-item">
-                    <span className="item-name">{item.name}</span>
-                    <span className="item-quantity">x{item.quantity}</span>
-                    <span className="item-price">{item.price}</span>
+          {orders.length > 0 ? (
+            orders.map((order) => (
+              <div key={order._id} className="order-card">
+                <div className="order-header">
+                  <div className="order-info">
+                    <span className="order-id">Đơn hàng #{order._id}</span>
+                    <span className="order-date">
+                      {new Date(order.createdAt).toLocaleDateString("vi-VN")}
+                    </span>
                   </div>
-                ))}
+                  <span
+                    className={`order-status ${
+                      order.status === "delivered" ? "delivered" : "shipping"
+                    }`}
+                  >
+                    {order.status === "delivered"
+                      ? "Đã giao hàng"
+                      : "Đang giao hàng"}
+                  </span>
+                </div>
+                <div className="order-items">
+                  {order.items.map((item, index) => (
+                    <div key={index} className="order-item">
+                      <span className="item-name">{item.name}</span>
+                      <span className="item-quantity">x{item.quantity}</span>
+                      <span className="item-price">
+                        {item.price.toLocaleString("vi-VN")}đ
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="order-footer">
+                  <span className="order-total">
+                    Tổng cộng: {order.total.toLocaleString("vi-VN")}đ
+                  </span>
+                  <button className="view-details-button">Xem chi tiết</button>
+                </div>
               </div>
-              <div className="order-footer">
-                <span className="order-total">Tổng cộng: {order.total}</span>
-                <button className="view-details-button">Xem chi tiết</button>
-              </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <div className="no-orders">Chưa có đơn hàng nào</div>
+          )}
         </div>
       </div>
     </div>

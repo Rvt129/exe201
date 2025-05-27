@@ -1,37 +1,44 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
+// Components
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Design from "./components/Design";
-import Order from "./components/Order";
+import DesignStudio from "./components/Design";
 import Cart from "./components/Cart";
 import Profile from "./components/Profile";
 import History from "./components/History";
-import "./App.css";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#1976d2",
+    },
+    secondary: {
+      main: "#dc004e",
+    },
+  },
+});
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/design" element={<Design />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="/design" element={<DesignStudio />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/Profile" element={<Profile />} />
-          <Route path="/History" element={<History />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/history" element={<History />} />
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 
