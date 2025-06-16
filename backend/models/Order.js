@@ -2,53 +2,74 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "User",
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    orderNumber: { type: String, unique: true },
+    customer: {
+      email: String,
+      firstName: String,
+      lastName: String,
+      phone: String,
+    },
+    shippingAddress: {
+      name: String,
+      phone: String,
+      street: String,
+      ward: String,
+      district: String,
+      city: String,
     },
     items: [
       {
-        name: {
-          type: String,
-          required: true,
-        },
-        quantity: {
-          type: Number,
-          required: true,
-          default: 1,
-        },
-        price: {
-          type: Number,
-          required: true,
+        design: { type: mongoose.Schema.Types.ObjectId, ref: "Design" },
+        product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        productName: String,
+        colorName: String,
+        colorHex: String,
+        size: String,
+        petType: { type: String, enum: ["cat", "dog"], default: "dog" }, // Add petType field
+        quantity: { type: Number, default: 1 },
+        unitPrice: Number,
+        totalPrice: Number,
+        designSnapshot: {
+          canvasData: String,
+          previewImage: String,
         },
       },
     ],
-    total: {
-      type: Number,
-      required: true,
+    pricing: {
+      subtotal: Number,
+      shippingFee: Number,
+      tax: Number,
+      discount: Number,
+      total: Number,
     },
-    status: {
-      type: String,
-      required: true,
-      enum: ["pending", "processing", "shipping", "delivered"],
-      default: "pending",
+    payment: {
+      method: String,
+      status: {
+        type: String,
+        enum: ["pending", "completed", "failed"],
+        default: "pending",
+      },
+      transactionId: String,
+      paidAt: Date,
+      gateway: String,
     },
-    shippingAddress: {
-      address: String,
-      city: String,
-      postalCode: String,
-      country: String,
+    fulfillment: {
+      status: {
+        type: String,
+        enum: ["pending", "processing", "shipped", "delivered", "cancelled"],
+        default: "pending",
+      },
+      trackingNumber: String,
+      shippedAt: Date,
+      deliveredAt: Date,
+      notes: String,
     },
-    paymentMethod: {
-      type: String,
-      required: true,
-    },
-    paymentResult: {
-      id: String,
-      status: String,
-      update_time: String,
-      email_address: String,
+    hasFeedback: { type: Boolean, default: false }, // Add this line
+    metadata: {
+      createdAt: { type: Date, default: Date.now },
+      updatedAt: { type: Date, default: Date.now },
+      processedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     },
   },
   {

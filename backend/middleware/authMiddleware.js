@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
+const asyncHandler = require("express-async-handler");
 const User = require("../models/User");
 
-const protect = async (req, res, next) => {
+// Protect routes
+const protect = asyncHandler(async (req, res, next) => {
   let token;
 
   if (
@@ -18,16 +20,53 @@ const protect = async (req, res, next) => {
       // Get user from the token
       req.user = await User.findById(decoded.id).select("-password");
 
+      if (!req.user) {
+        res.status(401);
+        throw new Error("Not authorized, user not found");
+      }
+
+      // Check if account is locked
+      if (req.user.security && req.user.security.isLocked) {
+        const now = new Date();
+        if (req.user.security.lockUntil && req.user.security.lockUntil > now) {
+          res.status(401);
+          throw new Error(
+            "Account is temporarily locked. Please try again later."
+          );
+        } else {
+          // Unlock account if lock time has passed
+          req.user.security.isLocked = false;
+          req.user.security.loginAttempts = 0;
+          await req.user.save();
+        }
+      }
+
+      // Check if user is active
+      if (req.user.metadata && !req.user.metadata.isActive) {
+        res.status(401);
+        throw new Error("User account has been deactivated");
+      }
+
       next();
     } catch (error) {
       console.error(error);
-      res.status(401).json({ message: "Not authorized, token failed" });
+      res.status(401);
+      throw new Error("Not authorized, token failed");
     }
+  } else {
+    res.status(401);
+    throw new Error("Not authorized, no token");
   }
+});
 
-  if (!token) {
-    res.status(401).json({ message: "Not authorized, no token" });
+// Admin middleware
+const admin = (req, res, next) => {
+  if (req.user && req.user.role === "admin") {
+    next();
+  } else {
+    res.status(401);
+    throw new Error("Not authorized as an admin");
   }
 };
 
-module.exports = { protect };
+module.exports = { protect, admin };

@@ -1,0 +1,3189 @@
+/* Modern Design Studio - Pet Fashion */
+:root {
+  --primary-brand: #ff6b6b;
+  --secondary-brand: #4ecdc4;
+  --accent-purple: #845ec2;
+  --accent-orange: #ffa726;
+  --neutral-dark: #2c3e50;
+  --neutral-medium: #6c757d;
+  --neutral-light: #f8f9fa;
+  --white: #ffffff;
+  --gradient-primary: linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%);
+  --gradient-secondary: linear-gradient(135deg, #4ecdc4 0%, #845ec2 100%);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 3px 5px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 6px 15px rgba(0, 0, 0, 0.1);
+  --border-radius: 10px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.design-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.design-container {
+  display: grid;
+  grid-template-columns: 300px 1fr 260px;
+  gap: 16px;
+  padding: 16px;
+  height: calc(100vh - 65px);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Left Toolbar Styles */
+.toolbar-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.toolbar {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  height: 100%;
+  overflow-y: auto;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.toolbar-header {
+  background: var(--gradient-primary);
+  color: var(--white);
+  padding: 16px;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  text-align: center;
+}
+
+.toolbar-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.toolbar-content {
+  padding: 20px;
+}
+
+.tool-section {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--neutral-dark);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.section-title i {
+  color: var(--primary-brand);
+  font-size: 0.9rem;
+}
+
+/* Product Selection */
+.product-selector {
+  position: relative;
+}
+
+.tool-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  background: var(--white);
+  color: var(--neutral-dark);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.tool-select:focus {
+  outline: none;
+  border-color: var(--primary-brand);
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.1);
+}
+
+.tool-select:hover {
+  border-color: var(--primary-brand);
+}
+
+/* Color Palette */
+.color-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32px, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.color-option {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-option:hover {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-sm);
+}
+
+.color-option.selected {
+  border-color: var(--primary-brand);
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+.color-option::after {
+  content: "";
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--color);
+}
+
+.color-option.selected::before {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: var(--white);
+  font-size: 0.65rem;
+  position: absolute;
+  z-index: 2;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Tool Buttons */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.tool-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 10px;
+  background: var(--neutral-light);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--neutral-medium);
+}
+
+.tool-button:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--primary-brand);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.tool-button.active {
+  background: rgba(255, 107, 107, 0.15);
+  color: var(--primary-brand);
+  border-color: var(--primary-brand);
+}
+
+.tool-button i {
+  font-size: 1.1rem;
+}
+
+/* Text Controls */
+.text-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: var(--neutral-light);
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.text-controls.hidden {
+  display: none;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.control-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--neutral-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.font-selector {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  background: var(--white);
+}
+
+.color-picker {
+  width: 100%;
+  height: 32px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.action-button.primary {
+  background: var(--gradient-primary);
+  color: var(--white);
+}
+
+.action-button.secondary {
+  background: var(--white);
+  color: var(--primary-brand);
+  border: 1px solid var(--primary-brand);
+}
+
+.action-button.danger {
+  background: rgba(220, 53, 69, 0.9);
+  color: var(--white);
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Canvas Container */
+.canvas-container {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.canvas-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.canvas-title {
+  color: var(--neutral-dark);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.canvas-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.canvas-action-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 5px;
+  background: var(--neutral-light);
+  color: var(--neutral-medium);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-action-btn:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--primary-brand);
+}
+
+.canvas-wrapper {
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+#canvas {
+  display: block;
+  background: #fafafa;
+}
+
+/* Canvas Inner Styles */
+.canvas-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.design-instructions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 107, 0.1),
+    rgba(76, 236, 196, 0.1)
+  );
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--neutral-dark);
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.03);
+}
+
+.design-instructions i {
+  color: var(--primary-brand);
+  font-size: 0.9rem;
+}
+
+.design-canvas {
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: var(--transition);
+}
+
+.design-canvas:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Enhanced Progress Indicator */
+.progress-indicator {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar {
+  position: relative;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Upload Area Enhancement */
+.upload-area {
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-area::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 107, 107, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.upload-area:hover::before {
+  left: 100%;
+}
+
+.upload-icon {
+  transition: var(--transition);
+}
+
+.upload-area:hover .upload-icon {
+  transform: scale(1.1);
+  color: var(--primary-brand);
+}
+
+/* Modern Scrollbar */
+.toolbar::-webkit-scrollbar,
+.right-toolbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.toolbar::-webkit-scrollbar-track,
+.right-toolbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.toolbar::-webkit-scrollbar-thumb,
+.right-toolbar::-webkit-scrollbar-thumb {
+  background: var(--primary-brand);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+.toolbar::-webkit-scrollbar-thumb:hover,
+.right-toolbar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-orange);
+}
+
+/* Status Indicators */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 7px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.status-indicator.success {
+  background: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.status-indicator.warning {
+  background: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+}
+
+.status-indicator.error {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
+/* Floating Action Buttons */
+.floating-actions {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.floating-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gradient-primary);
+  color: var(--white);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+}
+
+/* Mobile Enhancements */
+@media (max-width: 768px) {
+  .floating-actions {
+    bottom: 14px;
+    right: 14px;
+  }
+
+  .floating-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+
+  .design-instructions {
+    font-size: 0.75rem;
+    padding: 8px 14px;
+  }
+
+  .canvas-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .canvas-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Right Toolbar */
+.right-toolbar-container {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  height: 100%;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 16px;
+}
+
+.save-section,
+.export-section,
+.tips-section {
+  margin-bottom: 24px;
+}
+
+.section-description {
+  font-size: 0.8rem;
+  color: var(--neutral-medium);
+  margin-bottom: 12px;
+}
+
+.export-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.export-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 10px;
+  background: rgba(255, 107, 107, 0.07);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: var(--neutral-medium);
+  line-height: 1.4;
+}
+
+.export-note i {
+  color: var(--primary-brand);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.75rem;
+  color: var(--neutral-medium);
+  line-height: 1.4;
+}
+
+.tip-item i {
+  color: var(--secondary-brand);
+  margin-top: 2px;
+  width: 14px;
+  flex-shrink: 0;
+}
+
+/* Improved Button Styles */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button i {
+  font-size: 0.85rem;
+}
+
+.cta-button.primary {
+  background: var(--gradient-primary);
+  color: var(--white);
+}
+
+.cta-button.secondary {
+  background: white;
+  color: var(--primary-brand);
+  border: 1px solid var(--primary-brand);
+}
+
+.cta-button.outline {
+  background: transparent;
+  color: var(--neutral-dark);
+  border: 1px solid #e9ecef;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+.cta-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.primary-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+/* Enhanced Color Options */
+.color-option::after {
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.color-option.selected::after {
+  box-shadow: 0 0 0 2px var(--primary-brand);
+}
+
+/* Tool Section Enhancements */
+.section-title {
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--primary-brand);
+  border-radius: 1px;
+}
+
+/* Enhanced Tool Buttons */
+.tool-button i {
+  transition: var(--transition);
+}
+
+.tool-button:hover i {
+  transform: scale(1.1);
+}
+
+.tool-button.active i {
+  transform: scale(1.05);
+  color: inherit;
+}
+
+/* Better Input Styles */
+.font-selector,
+.tool-select {
+  background-image: linear-gradient(
+      45deg,
+      transparent 50%,
+      var(--primary-brand) 50%
+    ),
+    linear-gradient(135deg, var(--primary-brand) 50%, transparent 50%);
+  background-position: calc(100% - 12px) calc(1em + 1px),
+    calc(100% - 8px) calc(1em + 1px);
+  background-size: 4px 4px, 4px 4px;
+  background-repeat: no-repeat;
+}
+
+.font-selector:focus,
+.tool-select:focus {
+  background-image: linear-gradient(45deg, transparent 50%, var(--white) 50%),
+    linear-gradient(135deg, var(--white) 50%, transparent 50%);
+}
+
+/* Progress Indicator */
+.progress-indicator {
+  width: 100%;
+  height: 3px;
+  background: #e9ecef;
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 14px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: width 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .design-container {
+    grid-template-columns: 260px 1fr 240px;
+    gap: 14px;
+    padding: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .design-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    height: auto;
+    gap: 14px;
+  }
+
+  .toolbar,
+  .right-toolbar-container {
+    height: auto;
+    max-height: 380px;
+  }
+
+  .canvas-container {
+    order: -1;
+    min-height: 360px;
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .color-palette {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Loading States */
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid var(--primary-brand);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.canvas-container {
+  background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+  border-radius: 12px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.canvas-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(120, 119, 198, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(255, 177, 153, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+.preview-container {
+  margin-top: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Color selection grid */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.modern-color-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  background-color: white;
+}
+
+.modern-color-option:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-brand);
+}
+
+.modern-color-option.selected {
+  border-color: var(--primary-brand);
+  background-color: rgba(255, 107, 107, 0.05);
+  box-shadow: 0 0 0 1px var(--primary-brand);
+}
+
+.color-image-container {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.color-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.color-swatch {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 0.85rem;
+}
+
+.color-name {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  margin-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Remove the old color-palette styling or keep it as fallback */
+.color-palette {
+  display: none; /* Hide the old color palette */
+}
+
+/* Responsive adjustments for color grid */
+@media (max-width: 768px) {
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .color-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .color-image-container {
+    height: 35px;
+  }
+
+  .color-name {
+    font-size: 0.6rem;
+  }
+}
+
+/* Design area frame styling */
+.design-frame {
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Action buttons styling */
+.save-button {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  font-weight: bold;
+}
+
+.save-button:hover {
+  background: linear-gradient(45deg, #218838, #17a2b8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cart-button {
+  background: linear-gradient(45deg, #007bff, #17a2b8);
+  color: white;
+  font-weight: bold;
+}
+
+.cart-button:hover {
+  background: linear-gradient(45deg, #0056b3, #138496);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-button {
+  background: linear-gradient(45deg, #fd7e14, #e83e8c);
+  color: white;
+  font-weight: bold;
+}
+
+.order-button:hover {
+  background: linear-gradient(45deg, #dc6502, #d91a72);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Design instructions */
+.design-instructions {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 123, 255, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.design-instructions p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Modern Toolbar Styles */
+.modern-toolbar {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width of its container */
+  height: 100%; /* Full height */
+}
+
+.toolbar-tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.tab-button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.tab-button i {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.tab-button.active {
+  color: #007bff;
+  background-color: #f0f7ff;
+  border-bottom: 2px solid #007bff;
+}
+
+.tab-button:hover:not(.active) {
+  background-color: #f5f5f5;
+}
+
+.tool-panel {
+  padding: 15px;
+  overflow-y: auto; /* Scroll only the panel content */
+  flex-grow: 1;
+}
+
+.tool-section {
+  margin-bottom: 20px;
+}
+
+.tool-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.modern-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 0.9rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modern-button {
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.modern-button i {
+  margin-right: 8px;
+}
+
+.modern-button:hover {
+  background-color: #f5f5f5;
+}
+
+.modern-button.active {
+  background-color: #e6f2ff;
+  border-color: #b3d7ff;
+  color: #007bff;
+}
+
+.delete-button:hover {
+  background-color: #fee;
+  border-color: #fcc;
+  color: #d33;
+}
+
+.clear-button:hover {
+  background-color: #fff5e6;
+  border-color: #ffe0b3;
+  color: #e69500;
+}
+
+.primary-button {
+  background-color: #007bff;
+  color: white;
+  border-color: #0069d9;
+}
+
+.primary-button:hover {
+  background-color: #0069d9;
+  color: white;
+}
+
+/* Color Picker Styles */
+.color-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.color-preview-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.color-hex-input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.color-picker-popover {
+  position: relative; /* Changed from absolute to relative */
+  z-index: 100;
+  margin-top: 10px;
+}
+
+.color-picker-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; /* Send behind the picker */
+}
+
+.picker-wrapper {
+  /* Add this new class */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.picker-wrapper > div {
+  /* Target the ChromePicker component */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 8px !important;
+  max-width: 225px !important; /* Constrain width */
+  overflow: hidden !important;
+}
+
+/* Make the font preview more noticeable */
+.font-preview {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Modern Color Grid for Shirt Colors */
+.modern-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.modern-color-option {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.modern-color-option.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Color selection grid - Updated styles */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.modern-color-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  background-color: white;
+}
+
+.modern-color-option:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-brand);
+}
+
+.modern-color-option.selected {
+  border-color: var(--primary-brand);
+  background-color: rgba(255, 107, 107, 0.05);
+  box-shadow: 0 0 0 1px var(--primary-brand);
+}
+
+.color-image-container {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.color-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.color-swatch {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 0.85rem;
+}
+
+.color-name {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  margin-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Remove the old color-palette styling or keep it as fallback */
+.color-palette {
+  display: none; /* Hide the old color palette */
+}
+
+/* Responsive adjustments for color grid */
+@media (max-width: 768px) {
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .color-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .color-image-container {
+    height: 35px;
+  }
+
+  .color-name {
+    font-size: 0.6rem;
+  }
+}
+
+/* Design area frame styling */
+.design-frame {
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Action buttons styling */
+.save-button {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  font-weight: bold;
+}
+
+.save-button:hover {
+  background: linear-gradient(45deg, #218838, #17a2b8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cart-button {
+  background: linear-gradient(45deg, #007bff, #17a2b8);
+  color: white;
+  font-weight: bold;
+}
+
+.cart-button:hover {
+  background: linear-gradient(45deg, #0056b3, #138496);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-button {
+  background: linear-gradient(45deg, #fd7e14, #e83e8c);
+  color: white;
+  font-weight: bold;
+}
+
+.order-button:hover {
+  background: linear-gradient(45deg, #dc6502, #d91a72);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Design instructions */
+.design-instructions {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 123, 255, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.design-instructions p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Modern Toolbar Styles */
+.modern-toolbar {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width of its container */
+  height: 100%; /* Full height */
+}
+
+.toolbar-tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.tab-button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.tab-button i {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.tab-button.active {
+  color: #007bff;
+  background-color: #f0f7ff;
+  border-bottom: 2px solid #007bff;
+}
+
+.tab-button:hover:not(.active) {
+  background-color: #f5f5f5;
+}
+
+.tool-panel {
+  padding: 15px;
+  overflow-y: auto; /* Scroll only the panel content */
+  flex-grow: 1;
+}
+
+.tool-section {
+  margin-bottom: 20px;
+}
+
+.tool-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.modern-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 0.9rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modern-button {
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.modern-button i {
+  margin-right: 8px;
+}
+
+.modern-button:hover {
+  background-color: #f5f5f5;
+}
+
+.modern-button.active {
+  background-color: #e6f2ff;
+  border-color: #b3d7ff;
+  color: #007bff;
+}
+
+.delete-button:hover {
+  background-color: #fee;
+  border-color: #fcc;
+  color: #d33;
+}
+
+.clear-button:hover {
+  background-color: #fff5e6;
+  border-color: #ffe0b3;
+  color: #e69500;
+}
+
+.primary-button {
+  background-color: #007bff;
+  color: white;
+  border-color: #0069d9;
+}
+
+.primary-button:hover {
+  background-color: #0069d9;
+  color: white;
+}
+
+/* Color Picker Styles */
+.color-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.color-preview-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.color-hex-input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.color-picker-popover {
+  position: relative; /* Changed from absolute to relative */
+  z-index: 100;
+  margin-top: 10px;
+}
+
+.color-picker-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; /* Send behind the picker */
+}
+
+.picker-wrapper {
+  /* Add this new class */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.picker-wrapper > div {
+  /* Target the ChromePicker component */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 8px !important;
+  max-width: 225px !important; /* Constrain width */
+  overflow: hidden !important;
+}
+
+/* Make the font preview more noticeable */
+.font-preview {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Modern Color Grid for Shirt Colors */
+.modern-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.modern-color-option {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.modern-color-option.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Color selection grid - Updated styles */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.modern-color-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  background-color: white;
+}
+
+.modern-color-option:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-brand);
+}
+
+.modern-color-option.selected {
+  border-color: var(--primary-brand);
+  background-color: rgba(255, 107, 107, 0.05);
+  box-shadow: 0 0 0 1px var(--primary-brand);
+}
+
+.color-image-container {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.color-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.color-swatch {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 0.85rem;
+}
+
+.color-name {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  margin-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Remove the old color-palette styling or keep it as fallback */
+.color-palette {
+  display: none; /* Hide the old color palette */
+}
+
+/* Responsive adjustments for color grid */
+@media (max-width: 768px) {
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .color-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .color-image-container {
+    height: 35px;
+  }
+
+  .color-name {
+    font-size: 0.6rem;
+  }
+}
+
+/* Design area frame styling */
+.design-frame {
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Action buttons styling */
+.save-button {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  font-weight: bold;
+}
+
+.save-button:hover {
+  background: linear-gradient(45deg, #218838, #17a2b8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cart-button {
+  background: linear-gradient(45deg, #007bff, #17a2b8);
+  color: white;
+  font-weight: bold;
+}
+
+.cart-button:hover {
+  background: linear-gradient(45deg, #0056b3, #138496);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-button {
+  background: linear-gradient(45deg, #fd7e14, #e83e8c);
+  color: white;
+  font-weight: bold;
+}
+
+.order-button:hover {
+  background: linear-gradient(45deg, #dc6502, #d91a72);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Design instructions */
+.design-instructions {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 123, 255, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.design-instructions p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Modern Toolbar Styles */
+.modern-toolbar {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width of its container */
+  height: 100%; /* Full height */
+}
+
+.toolbar-tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.tab-button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.tab-button i {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.tab-button.active {
+  color: #007bff;
+  background-color: #f0f7ff;
+  border-bottom: 2px solid #007bff;
+}
+
+.tab-button:hover:not(.active) {
+  background-color: #f5f5f5;
+}
+
+.tool-panel {
+  padding: 15px;
+  overflow-y: auto; /* Scroll only the panel content */
+  flex-grow: 1;
+}
+
+.tool-section {
+  margin-bottom: 20px;
+}
+
+.tool-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.modern-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 0.9rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modern-button {
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.modern-button i {
+  margin-right: 8px;
+}
+
+.modern-button:hover {
+  background-color: #f5f5f5;
+}
+
+.modern-button.active {
+  background-color: #e6f2ff;
+  border-color: #b3d7ff;
+  color: #007bff;
+}
+
+.delete-button:hover {
+  background-color: #fee;
+  border-color: #fcc;
+  color: #d33;
+}
+
+.clear-button:hover {
+  background-color: #fff5e6;
+  border-color: #ffe0b3;
+  color: #e69500;
+}
+
+.primary-button {
+  background-color: #007bff;
+  color: white;
+  border-color: #0069d9;
+}
+
+.primary-button:hover {
+  background-color: #0069d9;
+  color: white;
+}
+
+/* Color Picker Styles */
+.color-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.color-preview-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.color-hex-input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.color-picker-popover {
+  position: relative; /* Changed from absolute to relative */
+  z-index: 100;
+  margin-top: 10px;
+}
+
+.color-picker-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; /* Send behind the picker */
+}
+
+.picker-wrapper {
+  /* Add this new class */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.picker-wrapper > div {
+  /* Target the ChromePicker component */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 8px !important;
+  max-width: 225px !important; /* Constrain width */
+  overflow: hidden !important;
+}
+
+/* Make the font preview more noticeable */
+.font-preview {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Modern Color Grid for Shirt Colors */
+.modern-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.modern-color-option {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.modern-color-option.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Color selection grid - Updated styles */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.modern-color-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  background-color: white;
+}
+
+.modern-color-option:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-brand);
+}
+
+.modern-color-option.selected {
+  border-color: var(--primary-brand);
+  background-color: rgba(255, 107, 107, 0.05);
+  box-shadow: 0 0 0 1px var(--primary-brand);
+}
+
+.color-image-container {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.color-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.color-swatch {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 0.85rem;
+}
+
+.color-name {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  margin-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Remove the old color-palette styling or keep it as fallback */
+.color-palette {
+  display: none; /* Hide the old color palette */
+}
+
+/* Responsive adjustments for color grid */
+@media (max-width: 768px) {
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .color-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .color-image-container {
+    height: 35px;
+  }
+
+  .color-name {
+    font-size: 0.6rem;
+  }
+}
+
+/* Design area frame styling */
+.design-frame {
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Action buttons styling */
+.save-button {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  font-weight: bold;
+}
+
+.save-button:hover {
+  background: linear-gradient(45deg, #218838, #17a2b8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cart-button {
+  background: linear-gradient(45deg, #007bff, #17a2b8);
+  color: white;
+  font-weight: bold;
+}
+
+.cart-button:hover {
+  background: linear-gradient(45deg, #0056b3, #138496);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-button {
+  background: linear-gradient(45deg, #fd7e14, #e83e8c);
+  color: white;
+  font-weight: bold;
+}
+
+.order-button:hover {
+  background: linear-gradient(45deg, #dc6502, #d91a72);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Design instructions */
+.design-instructions {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 123, 255, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.design-instructions p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Modern Toolbar Styles */
+.modern-toolbar {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width of its container */
+  height: 100%; /* Full height */
+}
+
+.toolbar-tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.tab-button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.tab-button i {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.tab-button.active {
+  color: #007bff;
+  background-color: #f0f7ff;
+  border-bottom: 2px solid #007bff;
+}
+
+.tab-button:hover:not(.active) {
+  background-color: #f5f5f5;
+}
+
+.tool-panel {
+  padding: 15px;
+  overflow-y: auto; /* Scroll only the panel content */
+  flex-grow: 1;
+}
+
+.tool-section {
+  margin-bottom: 20px;
+}
+
+.tool-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.modern-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 0.9rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modern-button {
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.modern-button i {
+  margin-right: 8px;
+}
+
+.modern-button:hover {
+  background-color: #f5f5f5;
+}
+
+.modern-button.active {
+  background-color: #e6f2ff;
+  border-color: #b3d7ff;
+  color: #007bff;
+}
+
+.delete-button:hover {
+  background-color: #fee;
+  border-color: #fcc;
+  color: #d33;
+}
+
+.clear-button:hover {
+  background-color: #fff5e6;
+  border-color: #ffe0b3;
+  color: #e69500;
+}
+
+.primary-button {
+  background-color: #007bff;
+  color: white;
+  border-color: #0069d9;
+}
+
+.primary-button:hover {
+  background-color: #0069d9;
+  color: white;
+}
+
+/* Color Picker Styles */
+.color-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.color-preview-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.color-hex-input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.color-picker-popover {
+  position: relative; /* Changed from absolute to relative */
+  z-index: 100;
+  margin-top: 10px;
+}
+
+.color-picker-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; /* Send behind the picker */
+}
+
+.picker-wrapper {
+  /* Add this new class */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.picker-wrapper > div {
+  /* Target the ChromePicker component */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 8px !important;
+  max-width: 225px !important; /* Constrain width */
+  overflow: hidden !important;
+}
+
+/* Make the font preview more noticeable */
+.font-preview {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Modern Color Grid for Shirt Colors */
+.modern-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.modern-color-option {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.modern-color-option.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Color selection grid - Updated styles */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.modern-color-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  background-color: white;
+}
+
+.modern-color-option:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-brand);
+}
+
+.modern-color-option.selected {
+  border-color: var(--primary-brand);
+  background-color: rgba(255, 107, 107, 0.05);
+  box-shadow: 0 0 0 1px var(--primary-brand);
+}
+
+.color-image-container {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.color-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.color-swatch {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 0.85rem;
+}
+
+.color-name {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  margin-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Remove the old color-palette styling or keep it as fallback */
+.color-palette {
+  display: none; /* Hide the old color palette */
+}
+
+/* Responsive adjustments for color grid */
+@media (max-width: 768px) {
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .color-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .color-image-container {
+    height: 35px;
+  }
+
+  .color-name {
+    font-size: 0.6rem;
+  }
+}
+
+/* Design area frame styling */
+.design-frame {
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Action buttons styling */
+.save-button {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  font-weight: bold;
+}
+
+.save-button:hover {
+  background: linear-gradient(45deg, #218838, #17a2b8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cart-button {
+  background: linear-gradient(45deg, #007bff, #17a2b8);
+  color: white;
+  font-weight: bold;
+}
+
+.cart-button:hover {
+  background: linear-gradient(45deg, #0056b3, #138496);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-button {
+  background: linear-gradient(45deg, #fd7e14, #e83e8c);
+  color: white;
+  font-weight: bold;
+}
+
+.order-button:hover {
+  background: linear-gradient(45deg, #dc6502, #d91a72);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Design instructions */
+.design-instructions {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 123, 255, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.design-instructions p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Modern Toolbar Styles */
+.modern-toolbar {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width of its container */
+  height: 100%; /* Full height */
+}
+
+.toolbar-tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.tab-button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.tab-button i {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.tab-button.active {
+  color: #007bff;
+  background-color: #f0f7ff;
+  border-bottom: 2px solid #007bff;
+}
+
+.tab-button:hover:not(.active) {
+  background-color: #f5f5f5;
+}
+
+.tool-panel {
+  padding: 15px;
+  overflow-y: auto; /* Scroll only the panel content */
+  flex-grow: 1;
+}
+
+.tool-section {
+  margin-bottom: 20px;
+}
+
+.tool-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.modern-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 0.9rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modern-button {
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.modern-button i {
+  margin-right: 8px;
+}
+
+.modern-button:hover {
+  background-color: #f5f5f5;
+}
+
+.modern-button.active {
+  background-color: #e6f2ff;
+  border-color: #b3d7ff;
+  color: #007bff;
+}
+
+.delete-button:hover {
+  background-color: #fee;
+  border-color: #fcc;
+  color: #d33;
+}
+
+.clear-button:hover {
+  background-color: #fff5e6;
+  border-color: #ffe0b3;
+  color: #e69500;
+}
+
+.primary-button {
+  background-color: #007bff;
+  color: white;
+  border-color: #0069d9;
+}
+
+.primary-button:hover {
+  background-color: #0069d9;
+  color: white;
+}
+
+/* Color Picker Styles */
+.color-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.color-preview-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.color-hex-input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.color-picker-popover {
+  position: relative; /* Changed from absolute to relative */
+  z-index: 100;
+  margin-top: 10px;
+}
+
+.color-picker-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; /* Send behind the picker */
+}
+
+.picker-wrapper {
+  /* Add this new class */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.picker-wrapper > div {
+  /* Target the ChromePicker component */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 8px !important;
+  max-width: 225px !important; /* Constrain width */
+  overflow: hidden !important;
+}
+
+/* Make the font preview more noticeable */
+.font-preview {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Modern Color Grid for Shirt Colors */
+.modern-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.modern-color-option {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.modern-color-option.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Color selection grid - Updated styles */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.modern-color-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  background-color: white;
+}
+
+.modern-color-option:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-brand);
+}
+
+.modern-color-option.selected {
+  border-color: var(--primary-brand);
+  background-color: rgba(255, 107, 107, 0.05);
+  box-shadow: 0 0 0 1px var(--primary-brand);
+}
+
+.color-image-container {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.color-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.color-swatch {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 0.85rem;
+}
+
+.color-name {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  margin-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Remove the old color-palette styling or keep it as fallback */
+.color-palette {
+  display: none; /* Hide the old color palette */
+}
+
+/* Responsive adjustments for color grid */
+@media (max-width: 768px) {
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .color-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .color-image-container {
+    height: 35px;
+  }
+
+  .color-name {
+    font-size: 0.6rem;
+  }
+}
+
+/* Design area frame styling */
+.design-frame {
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Action buttons styling */
+.save-button {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  font-weight: bold;
+}
+
+.save-button:hover {
+  background: linear-gradient(45deg, #218838, #17a2b8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cart-button {
+  background: linear-gradient(45deg, #007bff, #17a2b8);
+  color: white;
+  font-weight: bold;
+}
+
+.cart-button:hover {
+  background: linear-gradient(45deg, #0056b3, #138496);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-button {
+  background: linear-gradient(45deg, #fd7e14, #e83e8c);
+  color: white;
+  font-weight: bold;
+}
+
+.order-button:hover {
+  background: linear-gradient(45deg, #dc6502, #d91a72);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Design instructions */
+.design-instructions {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 123, 255, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.design-instructions p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Modern Toolbar Styles */
+.modern-toolbar {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width of its container */
+  height: 100%; /* Full height */
+}
+
+.toolbar-tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.tab-button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.tab-button i {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.tab-button.active {
+  color: #007bff;
+  background-color: #f0f7ff;
+  border-bottom: 2px solid #007bff;
+}
+
+.tab-button:hover:not(.active) {
+  background-color: #f5f5f5;
+}
+
+.tool-panel {
+  padding: 15px;
+  overflow-y: auto; /* Scroll only the panel content */
+  flex-grow: 1;
+}
+
+/* Context Menu Styles */
+.context-menu {
+  position: absolute;
+  min-width: 180px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1500;
+  padding: 8px;
+  animation: fadeIn 0.2s ease-out;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.context-menu-item {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.context-menu-item label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--neutral-dark);
+}
+
+.context-color-picker {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.context-font-selector {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  background: var(--white);
+  min-width: 120px;
+}
+
+.context-button {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f3f5;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.context-button:hover {
+  background-color: #e9ecef;
+}
+
+.context-button.delete {
+  color: #e74c3c;
+}
+
+.context-button.delete:hover {
+  background-color: #fee;
+}

@@ -1,0 +1,461 @@
+.my-designs-page {
+  min-height: 100vh;
+  padding: 0 0 60px 0;
+}
+
+.my-designs-header {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 0 16px 0;
+  text-align: center;
+}
+
+.my-designs-header h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #333;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.paw-icon {
+  font-size: 2.2rem;
+}
+
+.my-designs-subtitle {
+  color: #667eea;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.my-designs-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.my-designs-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0;
+  color: #667eea;
+  font-size: 1.1rem;
+}
+
+.spinner {
+  width: 38px;
+  height: 38px;
+  border: 4px solid #e8edff;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.my-designs-error {
+  color: #e53935;
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  margin: 40px auto;
+  max-width: 400px;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 24px rgba(229, 57, 53, 0.07);
+}
+
+.my-designs-empty {
+  text-align: center;
+  background: #fff;
+  border-radius: 18px;
+  padding: 48px 24px 40px 24px;
+  margin: 48px auto 0 auto;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+}
+
+.empty-icon {
+  font-size: 3.5rem;
+  opacity: 0.7;
+  margin-bottom: 1.2rem;
+}
+
+.my-designs-empty h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 0.7rem;
+  font-weight: 700;
+}
+
+.my-designs-empty p {
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.my-designs-create-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.13);
+}
+
+.my-designs-create-btn:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.my-designs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.design-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1.5px solid #e8edff;
+  position: relative;
+}
+
+.design-card:hover {
+  box-shadow: 0 16px 40px rgba(102, 126, 234, 0.16);
+  transform: translateY(-4px) scale(1.02);
+  border-color: #b3baff;
+}
+
+.design-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8edff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.design-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0 0 0 0;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.design-card:hover .design-card-img {
+  transform: scale(1.05);
+}
+
+.design-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 4px 14px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.13);
+  letter-spacing: 0.5px;
+}
+
+.design-badge.public {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.design-badge.private {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+}
+
+.design-card-body {
+  padding: 18px 18px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.design-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.design-card-desc {
+  color: #666;
+  font-size: 0.97rem;
+  margin-bottom: 10px;
+  min-height: 36px;
+}
+
+.design-card-tags {
+  margin-bottom: 14px;
+  min-height: 20px;
+}
+
+.design-tag {
+  display: inline-block;
+  background: #e8edff;
+  color: #667eea;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  padding: 2px 10px;
+  margin-right: 6px;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.design-card-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 0;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: auto;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.design-card-btn:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.designs-count {
+  color: #666;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  font-weight: 500;
+}
+
+.pagination-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 2px solid #e0e0e0;
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  color: #495057;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 80px;
+  justify-content: center;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  border-color: #007bff;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.pagination-btn:disabled {
+  background: #f8f9fa;
+  border-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 8px;
+}
+
+.pagination-number {
+  padding: 10px 14px;
+  border: 2px solid #e0e0e0;
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  color: #495057;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.pagination-number:hover:not(.active) {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  border-color: #6c757d;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+.pagination-number.active {
+  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+  color: white;
+  border-color: #28a745;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+  transform: translateY(-1px);
+}
+
+.pagination-ellipsis {
+  padding: 10px 8px;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+}
+
+.pagination-info {
+  color: #6c757d;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+  background: #f8f9fa;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #e9ecef;
+}
+
+/* Add some animation for page transitions */
+.my-designs-list {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .pagination-container {
+    margin-top: 30px;
+    gap: 16px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .pagination-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+    min-width: 70px;
+  }
+
+  .pagination-number {
+    font-size: 12px;
+    padding: 8px 10px;
+    min-width: 36px;
+    height: 36px;
+  }
+
+  .pagination-info {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .pagination-numbers {
+    margin: 0 4px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pagination-numbers {
+    order: 1;
+  }
+
+  .pagination-btn {
+    order: 2;
+    width: 100%;
+    max-width: 120px;
+  }
+
+  .pagination-info {
+    order: 3;
+  }
+}
+
+/* Improve the overall design card spacing when pagination is present */
+.my-designs-content {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+}
+
+.my-designs-list {
+  flex: 1;
+}

@@ -13,7 +13,7 @@ const generateToken = (id) => {
 // @access  Public
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { firstName, lastName, email, password, phone, addresses } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -21,15 +21,20 @@ const registerUser = async (req, res) => {
     }
 
     const user = await User.create({
-      name,
       email,
       password,
+      profile: {
+        firstName,
+        lastName,
+        phone,
+        addresses: addresses || [],
+      },
     });
 
     res.status(201).json({
       _id: user._id,
-      name: user.name,
       email: user.email,
+      profile: user.profile,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -48,8 +53,9 @@ const loginUser = async (req, res) => {
     if (user && (await user.matchPassword(password))) {
       res.json({
         _id: user._id,
-        name: user.name,
         email: user.email,
+        role: user.role,
+        profile: user.profile,
         token: generateToken(user._id),
       });
     } else {
@@ -69,8 +75,9 @@ const getUserProfile = async (req, res) => {
     if (user) {
       res.json({
         _id: user._id,
-        name: user.name,
         email: user.email,
+        profile: user.profile,
+        role: user.role,
       });
     } else {
       res.status(404).json({ message: "User not found" });
@@ -80,8 +87,18 @@ const getUserProfile = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password");
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getUserProfile,
+  getAllUsers,
 };

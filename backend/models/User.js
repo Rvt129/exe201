@@ -3,10 +3,6 @@ const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
     email: {
       type: String,
       required: true,
@@ -18,8 +14,40 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    phone: String,
-    address: String,
+    role: {
+      type: String,
+      enum: ["customer", "admin"],
+      default: "customer",
+    },
+    profile: {
+      firstName: { type: String, required: true },
+      lastName: { type: String, required: true },
+      phone: { type: String },
+      addresses: [
+        {
+          name: String,
+          phone: String,
+          street: String,
+          ward: String,
+          district: String,
+          city: String,
+          isDefault: { type: Boolean, default: false },
+        },
+      ],
+    },
+    security: {
+      is2FAEnabled: { type: Boolean, default: false },
+      secretKey: { type: String },
+      lastLogin: { type: Date },
+      loginAttempts: { type: Number, default: 0 },
+      isLocked: { type: Boolean, default: false },
+      lockUntil: { type: Date },
+    },
+    metadata: {
+      isActive: { type: Boolean, default: true },
+      createdAt: { type: Date, default: Date.now },
+      updatedAt: { type: Date, default: Date.now },
+    },
   },
   {
     timestamps: true,
