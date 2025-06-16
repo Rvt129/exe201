@@ -30,11 +30,14 @@ const AdminDashboard = () => {
         const feedbacksData = await feedbackService.getAllFeedbacks();
 
         // Load contacts count
-        const contactsResponse = await fetch("/api/support/contact", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const contactsResponse = await fetch(
+          "http://localhost:5000/api/support/contact",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         const contactsData = await contactsResponse.json();
 
         setStats({

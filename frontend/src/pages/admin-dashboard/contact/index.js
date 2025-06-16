@@ -32,7 +32,7 @@ const AdminContact = () => {
   const handleStatusUpdate = async (id, newStatus) => {
     try {
       await axios.put(
-        `/api/support/contact/${id}`,
+        `http://localhost:5000/api/support/contact/${id}`,
         { status: newStatus },
         {
           headers: {
