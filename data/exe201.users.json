@@ -1,0 +1,107 @@
+[{
+  "_id": {
+    "$oid": "6843a344c6bc558725bf0488"
+  },
+  "email": "admin@admin.com",
+  "password": "$2a$10$ssTJfKsGzKvOnR4l/6eOhOy3GgiPp82/oGP0C2AHUNQEJ0Z35aLmK",
+  "role": "admin",
+  "profile": {
+    "firstName": "Hong 1",
+    "lastName": "Dinh",
+    "addresses": [
+      {
+        "name": "Hong 1 Dinh",
+        "phone": "0967910188",
+        "street": "51B Ngách 63/5/36 ( Đối diện nhà văn hoá tổ dân phố 6) Ngõ 35 Lê Đức Thọ",
+        "ward": "Phú Châu",
+        "district": "Ba Vì",
+        "city": "Hà Nội",
+        "isDefault": true,
+        "_id": {
+          "$oid": "68455aec60d63c9acbbc6aa9"
+        }
+      },
+      {
+        "name": "Dinh Xuan Hong",
+        "phone": "0967910188",
+        "street": "51B Ngách 63/5/36 ( Đối diện nhà văn hoá tổ dân phố 6) Ngõ 35 Lê Đức Thọ",
+        "ward": "Phú Châu",
+        "district": "Ba Vì",
+        "city": "Hà Nội",
+        "isDefault": false,
+        "_id": {
+          "$oid": "6848e9ed67efbc5e6d4d8ada"
+        }
+      }
+    ],
+    "phone": "0967910188"
+  },
+  "security": {
+    "is2FAEnabled": false,
+    "loginAttempts": 0,
+    "isLocked": false
+  },
+  "metadata": {
+    "isActive": true,
+    "createdAt": {
+      "$date": "2025-06-07T02:26:12.734Z"
+    },
+    "updatedAt": {
+      "$date": "2025-06-11T14:43:22.752Z"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-06-07T02:26:12.744Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-11T14:43:22.753Z"
+  },
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "684a03a587dbecc839b0ce45"
+  },
+  "email": "customer@custome.com",
+  "password": "$2a$10$NIHzy4d0H28bzPgVhsQqpe5bNvd1ByjmK1dU11ebCp5sNgv4JUB4q",
+  "role": "customer",
+  "profile": {
+    "firstName": "Customer",
+    "lastName": "QWE",
+    "addresses": [
+      {
+        "name": "admin",
+        "phone": "0967910188",
+        "street": "35 Le Duc Tho - Nam Tu Liem",
+        "ward": "Phường1",
+        "district": "Quận 1",
+        "city": "Ha Noi",
+        "isDefault": true,
+        "_id": {
+          "$oid": "684ed6928bab648ed80b847e"
+        }
+      }
+    ]
+  },
+  "security": {
+    "is2FAEnabled": false,
+    "loginAttempts": 0,
+    "isLocked": false
+  },
+  "metadata": {
+    "isActive": true,
+    "createdAt": {
+      "$date": "2025-06-11T22:31:01.743Z"
+    },
+    "updatedAt": {
+      "$date": "2025-06-15T14:20:02.724Z"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-06-11T22:31:01.746Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-15T14:20:02.727Z"
+  },
+  "__v": 1
+}]
