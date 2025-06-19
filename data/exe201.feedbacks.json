@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "684ed6e78bab648ed80b8531"
+  },
+  "order": {
+    "$oid": "684ed6928bab648ed80b8482"
+  },
+  "user": {
+    "$oid": "684a03a587dbecc839b0ce45"
+  },
+  "rating": 5,
+  "comment": "Ok",
+  "createdAt": {
+    "$date": "2025-06-15T14:21:27.148Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684ed8078bab648ed80b86b5"
+  },
+  "order": {
+    "$oid": "684ed7da8bab648ed80b8620"
+  },
+  "user": {
+    "$oid": "684a03a587dbecc839b0ce45"
+  },
+  "rating": 4,
+  "comment": "ổn",
+  "createdAt": {
+    "$date": "2025-06-15T14:26:15.381Z"
+  },
+  "__v": 0
+}]

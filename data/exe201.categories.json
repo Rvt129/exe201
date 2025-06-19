@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "6841c7d7cebb49a45123cc77"
+  },
+  "name": "Áo Thun",
+  "description": "Áo thun thú cưng",
+  "metadata": {
+    "isActive": true,
+    "createdAt": {
+      "$date": "2025-06-05T16:37:43.514Z"
+    },
+    "updatedAt": {
+      "$date": "2025-06-05T16:37:43.514Z"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-06-05T16:37:43.518Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-05T16:37:43.518Z"
+  },
+  "__v": 0
+}]
