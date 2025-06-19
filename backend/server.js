@@ -33,8 +33,6 @@ app.use("/api/users", require("./routes/users"));
 app.use("/api/payment", require("./routes/payment"));
 app.use("/api/revenue", require("./routes/revenue"));
 app.use("/api/feedbacks", require("./routes/feedback"));
-app.use(cors());
-app.use(express.json());
 app.use("/api/support/contact", require("./routes/contact"));
 
 const PORT = process.env.PORT || 5000;
