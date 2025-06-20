@@ -472,7 +472,7 @@ function Design() {
           info("Đang tải ảnh lên...");
           // Upload to backend and get URL
           const response = await fetch(
-            "http://localhost:5000/api/designs/upload-image",
+            process.env.REACT_APP_API_URL + "/api/designs/upload-image",
             {
               method: "POST",
               headers: {
@@ -837,7 +837,7 @@ function Design() {
       success("Đã thêm vào giỏ hàng!");
     } catch (error) {
       console.error("Lỗi khi thêm vào giỏ:", error);
-    return;
+      return;
     }
   };
 

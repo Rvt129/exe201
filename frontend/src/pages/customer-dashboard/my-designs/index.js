@@ -137,7 +137,7 @@ function MyDesigns() {
                 <img
                   src={
                     design.previewImage?.startsWith("/")
-                      ? `http://localhost:5000${design.previewImage}`
+                      ? process.env.REACT_APP_API_URL + design.previewImage
                       : design.previewImage
                   }
                   alt={design.name}

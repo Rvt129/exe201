@@ -1,5 +1,5 @@
 // Service for /api/designs
-const API_URL = "http://localhost:5000/api/designs";
+const API_URL = process.env.REACT_APP_API_URL + "/api/designs";
 
 export async function saveDesign(designPayload, token) {
   const response = await fetch(API_URL, {

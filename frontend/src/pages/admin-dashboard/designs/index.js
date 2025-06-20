@@ -87,7 +87,6 @@ const AdminDesigns = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
           />
-        
         </form>
       </div>
 
@@ -113,7 +112,7 @@ const AdminDesigns = () => {
                 <td>
                   <div className="design-image-container">
                     <img
-                      src={`http://localhost:5000${design.previewImage}`}
+                      src={process.env.REACT_APP_API_URL + design.previewImage}
                       alt={design.name}
                       className="design-preview-image"
                       onError={(e) => {

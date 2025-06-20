@@ -1,5 +1,5 @@
 // Service for orders API
-const API_URL = "http://localhost:5000/api/orders";
+const API_URL = process.env.REACT_APP_API_URL + "/api/orders";
 
 // Get all orders with pagination (likely for admin)
 export const getOrders = async (page = 1, limit = 8) => {

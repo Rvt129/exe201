@@ -773,7 +773,7 @@ const ProductsPage = () => {
                 <img
                   src={
                     design.previewImage
-                      ? `http://localhost:5000${design.previewImage}`
+                      ? process.env.REACT_APP_API_URL + design.previewImage
                       : "/placeholder-design.png"
                   }
                   alt={design.name}
@@ -871,7 +871,7 @@ const ProductsPage = () => {
                 <img
                   src={
                     design.previewImage
-                      ? `http://localhost:5000${design.previewImage}`
+                      ? process.env.REACT_APP_API_URL + design.previewImage
                       : "/placeholder-design.png"
                   }
                   alt={design.name}

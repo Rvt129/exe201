@@ -14,7 +14,7 @@ const AdminContact = () => {
   const fetchContacts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/support/contact",
+        process.env.REACT_APP_API_URL + "/api/support/contact",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -32,7 +32,7 @@ const AdminContact = () => {
   const handleStatusUpdate = async (id, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/support/contact/${id}`,
+        process.env.REACT_APP_API_URL + `/api/support/contact/${id}`,
         { status: newStatus },
         {
           headers: {
