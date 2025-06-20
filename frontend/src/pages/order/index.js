@@ -224,7 +224,8 @@ function Order() {
               0
             );
             const shippingFee = 30000; // Fixed shipping fee
-            const tax = Math.round(subtotal * 0.1); // 10% tax
+            const tax=0;
+            //const tax = Math.round(subtotal * 0.1); // 10% tax
             // --- ADD THIS FOR TESTING DISCOUNT ---
             const discount = 0;
             const total = Math.max(subtotal + shippingFee + tax - discount, 0);
