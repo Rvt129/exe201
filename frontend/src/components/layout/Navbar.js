@@ -156,6 +156,20 @@ function Navbar() {
         </div>
 
         <div className="navbar-right">
+          <button
+            className="icon-button search-btn"
+            disabled
+            style={{
+              background: "transparent",
+              border: "none",
+              width: 80,
+              height: 40,
+              padding: 0,
+              margin: 0,
+              boxShadow: "none",
+              cursor: "default",
+            }}
+          ></button>
           <div className="dropdown">
             <button
               className="dropdown-button"

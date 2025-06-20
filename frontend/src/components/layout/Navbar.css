@@ -572,7 +572,7 @@
 }
 
 .icon-button::before,
-.search-btn::before {
+/* .search-btn::before {
   content: "";
   position: absolute;
   top: 0;
@@ -582,14 +582,14 @@
   background: linear-gradient(135deg, #b85b56 0%, #de741c 100%);
   transition: all 0.3s ease;
   z-index: -1;
-}
+} */
 
 .icon-button:hover,
-.search-btn:hover {
+/* .search-btn:hover {
   color: white;
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.25);
-}
+} */
 
 .icon-button:hover::before,
 .search-btn:hover::before {
