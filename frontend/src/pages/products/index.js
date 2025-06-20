@@ -942,7 +942,7 @@ const ProductsPage = () => {
         <div className="container">
           <div className="page-header">
             <h1 className="page-title">
-              <span className="gradient-text">Sản Phẩm</span> & Thiết Kế
+              <span className="gradient-text">Sản Phẩm & Thiết Kế</span>
             </h1>
             <p className="page-subtitle">
               Khám phá sản phẩm, quản lý thiết kế và tìm cảm hứng từ cộng đồng

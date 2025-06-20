@@ -26,6 +26,7 @@ import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRou
 import AdminProtectedRoute from "./components/AdminProtectedRoute"; // Import AdminProtectedRoute
 import CustomerProtectedRoute from "./components/CustomerProtectedRoute"; // Import CustomerProtectedRoute
 import { ToastProvider } from "./contexts/ToastContext";
+import SizeGuide from "./pages/size-guide";
 
 // Admin Pages
 import AdminDesigns from "./pages/admin-dashboard/designs";
@@ -107,6 +108,7 @@ function App() {
               <Route index element={<AdminOrders />} />{" "}
               {/* Default admin page */}
             </Route>
+            <Route path="/size-guide" element={<SizeGuide />} />
             {/* 404 Not Found route - đặt cuối cùng */}
             <Route path="*" element={<NotFound />} />
           </Routes>

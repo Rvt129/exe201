@@ -1,15 +1,16 @@
 /* Modern Design Studio - Pet Fashion */
 :root {
-  --primary-brand: #ff6b6b;
-  --secondary-brand: #4ecdc4;
-  --accent-purple: #845ec2;
-  --accent-orange: #ffa726;
-  --neutral-dark: #2c3e50;
-  --neutral-medium: #6c757d;
-  --neutral-light: #f8f9fa;
-  --white: #ffffff;
-  --gradient-primary: linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%);
-  --gradient-secondary: linear-gradient(135deg, #4ecdc4 0%, #845ec2 100%);
+  --primary-brand: #593e67;
+  --secondary-brand: #84495f;
+  --accent-purple: #b85b56;
+  --accent-orange: #de741c;
+  --neutral-dark: #593e67;
+  --neutral-medium: #84495f;
+  --neutral-light: #fea837;
+  --white: #ded2eb;
+  --gradient-primary: linear-gradient(135deg, #593e67 0%, #de741c 100%);
+  --gradient-secondary: linear-gradient(135deg, #84495f 0%, #fea837 100%);
+  --gradient-text: linear-gradient(135deg, #593e67 0%, #84495f 100%);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 3px 5px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 6px 15px rgba(0, 0, 0, 0.1);

@@ -117,7 +117,7 @@ function Navbar() {
                   🎨 Tạo thiết kế mới
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link to="/designs/gallery">Thư viện thiết kế</Link>
+                <Link to="/products">Thư viện thiết kế</Link>
                 <Link to="/designs/popular">Thiết kế phổ biến</Link>
                 <Link to="/designs/trending">Xu hướng</Link>
               </div>
@@ -139,9 +139,10 @@ function Navbar() {
                 onMouseLeave={() => handleDropdownLeave("service")}
               >
                 <Link to="/services/custom-printing">In ấn theo yêu cầu</Link>
-                <Link to="/services/sizing-guide">Hướng dẫn chọn size</Link>
                 <Link to="/services/design-consultation">Tư vấn thiết kế</Link>
-                <Link to="/services/bulk-orders">Đặt hàng số lượng lớn</Link>
+                <Link to="https://www.facebook.com/messages/t/658720540658165">
+                  Đặt hàng số lượng lớn
+                </Link>
               </div>
             )}
           </div>
@@ -149,7 +150,7 @@ function Navbar() {
 
         <div className="navbar-center">
           <Link to="/" className="logo">
-            🐾 MY PAWPAL 
+            🐾 YOUR PAWPAL
           </Link>
           <p className="logo-tagline">Custom Pet Apparel</p>
         </div>
@@ -173,17 +174,14 @@ function Navbar() {
                   🎧 Trung tâm hỗ trợ
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link to="/how-it-works">Cách thức hoạt động</Link>
                 <Link to="/size-guide">Bảng size</Link>
                 <Link to="/material-info">Chất liệu & In ấn</Link>
                 <Link to="/shipping">Vận chuyển</Link>
-                <Link to="/faq">Câu hỏi thường gặp</Link>
-                <Link to="/contact">Liên hệ</Link>
               </div>
             )}
           </div>
 
-          <button
+          {/* <button
             className="icon-button search-btn"
             onClick={() => setShowSearch(!showSearch)}
             title="Tìm kiếm"
@@ -203,7 +201,7 @@ function Navbar() {
                 strokeLinejoin="round"
               />
             </svg>
-          </button>
+          </button> */}
 
           <Link to="/cart" className="cart-button" title="Giỏ hàng">
             <svg
@@ -275,13 +273,13 @@ function Navbar() {
 
           {/* Quick Design CTA for non-logged users */}
           {!isLoggedIn && (
-            <Link to="/design-studio" className="cta-button">
+            <Link to="/design" className="cta-button">
               Thiết kế ngay
             </Link>
           )}
         </div>
       </nav>
-      {showSearch && (
+      {/* {showSearch && (
         <div className="search-overlay">
           <div className="search-container">
             <input
@@ -308,7 +306,7 @@ function Navbar() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 }
