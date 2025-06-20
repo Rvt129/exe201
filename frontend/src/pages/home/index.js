@@ -81,8 +81,17 @@ function Home() {
                 <i className="fas fa-paw"></i>
               </div>
               <div className="hero-placeholder">
-                <i className="fas fa-dog hero-icon"></i>
-                <p>Hình ảnh thú cưng thời trang</p>
+                <img
+                  src={process.env.PUBLIC_URL + "/assets/logo-pawpal.jpg"}
+                  alt="PetFashion Studio Logo"
+                  style={{
+                    width: "80%",
+                    height: "80%",
+                    objectFit: "cover",
+                    borderRadius: "50%",
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -236,7 +245,7 @@ function Home() {
             </div>
           </div>
           <div className="collection-cta">
-            <Link to="/designs" className="cta-button outline">
+            <Link to="/products" className="cta-button outline">
               Khám Phá Thêm Thiết Kế
             </Link>
           </div>
@@ -321,7 +330,7 @@ function Home() {
               <p>Nơi tình yêu thú cưng gặp gỡ thời trang</p>
               <div className="social-links">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/profile.php?id=61576657957296"
                   className="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -370,7 +379,7 @@ function Home() {
                   <a href="#">Chính Sách Đổi Trả</a>
                 </li>
                 <li>
-                  <a href="#">Liên Hệ</a>
+                  <a href="/support">Liên Hệ</a>
                 </li>
               </ul>
             </div>
@@ -396,7 +405,7 @@ function Home() {
       {/* Floating Contact Icons */}
       <div className="floating-contact">
         <a
-          href="https://m.me/your-facebook-page"
+          href="https://www.facebook.com/profile.php?id=61576657957296"
           className="contact-icon messenger-icon"
           target="_blank"
           rel="noopener noreferrer"

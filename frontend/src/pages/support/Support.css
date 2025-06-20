@@ -12,7 +12,7 @@
 /* Hero Section */
 .support-hero {
   background: linear-gradient(135deg, #84495f 0%, #b85b56 100%);
-  color: #fff;
+  color: #fff7c0;
   padding: 80px 0 60px;
   position: relative;
   overflow: hidden;
@@ -65,13 +65,13 @@
   max-width: 500px;
 }
 
-.hero-stats {
+.support-hero.hero-stats {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.stat-item {
+.support-hero.stat-item {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -88,17 +88,18 @@
   color: #593e67;
 }
 
-.stat-number {
+.support-hero.stat-number {
   font-size: 2rem;
   font-weight: 700;
   display: block;
-  color: #fff;
+  color: #fff7c0;
 }
 
-.stat-label {
+.support-hero.stat-label {
   font-size: 0.9rem;
   opacity: 0.8;
   display: block;
+  color: #fff7c0;
 }
 
 /* Quick Help Section */
@@ -640,7 +641,7 @@
 
 .footer-section h3 {
   font-size: 1.3rem;
-  color: #333;
+  color: var(--neutral-light);
   margin-bottom: 20px;
   font-weight: 600;
 }
