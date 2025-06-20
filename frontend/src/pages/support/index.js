@@ -149,7 +149,7 @@ const SupportPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/support/contact",
+        process.env.REACT_APP_API_URL + "/api/support/contact",
         contactForm
       );
 

@@ -191,7 +191,7 @@ function OrderDetails() {
                         <div className="item-image">
                           <img
                             src={
-                              "http://localhost:5000" +
+                              process.env.REACT_APP_API_URL +
                               item.designSnapshot.previewImage
                             }
                             alt={item.productName}

@@ -60,7 +60,7 @@ const CartItem = ({
               src={
                 item.design.previewImageUrl ||
                 item.design.finalImageUrl ||
-                `http://localhost:5000${
+                `${process.env.REACT_APP_API_URL}${
                   item.design.previewImage || item.design.finalImage
                 }`
               }

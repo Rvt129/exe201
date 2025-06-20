@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/orders/payos";
+const API_URL = process.env.REACT_APP_API_URL + "/api/orders/payos";
 
 // Tạo link thanh toán PayOS
 export const createPayOSOrder = async (orderData) => {

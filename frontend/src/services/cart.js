@@ -19,7 +19,7 @@ export async function addToCart(
     throw new Error("Pet type is required and must be 'cat' or 'dog'");
   }
 
-  const response = await fetch("http://localhost:5000/api/cart", {
+  const response = await fetch(process.env.REACT_APP_API_URL + "/api/cart", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export async function addToCart(
 }
 
 export async function getCart(token) {
-  const response = await fetch("http://localhost:5000/api/cart", {
+  const response = await fetch(process.env.REACT_APP_API_URL + "/api/cart", {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -68,12 +68,15 @@ export async function getCart(token) {
 }
 
 export async function removeItemFromCart(itemId, token) {
-  const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await fetch(
+    process.env.REACT_APP_API_URL + `/api/cart/${itemId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   if (!response.ok) {
     const errorData = await response.text();
     console.error("Remove item from cart error:", response.status, errorData);
@@ -85,14 +88,17 @@ export async function removeItemFromCart(itemId, token) {
 }
 
 export async function updateItemQuantity(itemId, quantity, token) {
-  const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ quantity }),
-  });
+  const response = await fetch(
+    process.env.REACT_APP_API_URL + `/api/cart/${itemId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ quantity }),
+    }
+  );
   if (!response.ok) {
     const errorData = await response.text();
     console.error("Update item quantity error:", response.status, errorData);
@@ -110,17 +116,20 @@ export async function updateItemSize(itemId, size, token) {
     throw new Error("Missing required parameters");
   }
 
-  const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      size,
-      // Backend will recalculate price based on new size
-    }),
-  });
+  const response = await fetch(
+    process.env.REACT_APP_API_URL + `/api/cart/${itemId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        size,
+        // Backend will recalculate price based on new size
+      }),
+    }
+  );
 
   if (!response.ok) {
     const errorData = await response.text();
@@ -145,17 +154,20 @@ export async function updateItemPetType(itemId, petType, token) {
     throw new Error("Pet type must be 'cat' or 'dog'");
   }
 
-  const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      petType: petType.toLowerCase(),
-      // Backend will recalculate price based on new pet type
-    }),
-  });
+  const response = await fetch(
+    process.env.REACT_APP_API_URL + `/api/cart/${itemId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        petType: petType.toLowerCase(),
+        // Backend will recalculate price based on new pet type
+      }),
+    }
+  );
 
   if (!response.ok) {
     const errorData = await response.text();
@@ -184,17 +196,20 @@ export async function updateCartItem(itemId, updates, token) {
     throw new Error("Pet type must be 'cat' or 'dog'");
   }
 
-  const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      ...updates,
-      petType: updates.petType?.toLowerCase(),
-    }),
-  });
+  const response = await fetch(
+    process.env.REACT_APP_API_URL + `/api/cart/${itemId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        ...updates,
+        petType: updates.petType?.toLowerCase(),
+      }),
+    }
+  );
 
   if (!response.ok) {
     const errorData = await response.text();

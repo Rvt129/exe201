@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 
         // Load contacts count
         const contactsResponse = await fetch(
-          "http://localhost:5000/api/support/contact",
+          process.env.REACT_APP_API_URL+"/api/support/contact",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

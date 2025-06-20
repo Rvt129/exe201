@@ -192,7 +192,10 @@ const OrderDetailsPopup = ({ order, isOpen, onClose }) => {
                     <div className="item-image">
                       {item.designSnapshot?.previewImage ? (
                         <img
-                          src={"http://localhost:5000" + item.designSnapshot.previewImage}
+                          src={
+                            process.env.REACT_APP_API_URL +
+                            item.designSnapshot.previewImage
+                          }
                           alt={item.productName}
                           onError={(e) => {
                             e.target.style.display = "none";

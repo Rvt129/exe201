@@ -1,5 +1,5 @@
 // Service for revenue API
-const API_URL = "http://localhost:5000/api/revenue";
+const API_URL = process.env.REACT_APP_API_URL + "/api/revenue";
 
 // Get revenue statistics
 export const getRevenueStats = async (timeRange = "7days") => {

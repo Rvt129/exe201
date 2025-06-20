@@ -598,7 +598,7 @@ function Order() {
             localStorage.removeItem("designData");
             localStorage.removeItem("selectedProductId");
           }
-            navigate(`/order-details/${createdOrder._id}`);
+          navigate(`/order-details/${createdOrder._id}`);
           return;
         }
 
@@ -730,9 +730,10 @@ function Order() {
 
               // Ensure the image URL includes the backend port if it's a relative path
               if (imageUrl && !imageUrl.startsWith("http")) {
-                imageUrl = `http://localhost:5000${
-                  imageUrl.startsWith("/") ? "" : "/"
-                }${imageUrl}`;
+                imageUrl =
+                  process.env.REACT_APP_API_URL +
+                  (imageUrl.startsWith("/") ? "" : "/") +
+                  imageUrl;
               }
 
               return (
