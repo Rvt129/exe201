@@ -486,6 +486,9 @@ const cancelPayOSPaymentLink = async (req, res) => {
 
 // POST /api/orders/payos/webhook
 const payOSWebhookHandler = async (req, res) => {
+  console.log("Webhook headers:", req.headers);
+  console.log("Webhook body:", req.body);
+
   try {
     // Đây chính là hàm xử lý "callback hệ thống"
     const webhookData = req.body;

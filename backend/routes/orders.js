@@ -56,7 +56,12 @@ router.put("/payos/:orderId", cancelPayOSPaymentLink);
 router.post("/payos/confirm-webhook", confirmPayOSWebhook);
 
 // PayOS webhook endpoint: cập nhật trạng thái đơn hàng khi PayOS gửi thông báo
+const bodyParser = require("body-parser");
 
-router.post("/payos-webhook", payOSWebhookHandler);
-
+router.post(
+  "/payos-webhook",
+  bodyParser.json(),
+  bodyParser.urlencoded({ extended: true }),
+  payOSWebhookHandler
+);
 module.exports = router;
