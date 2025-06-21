@@ -6,7 +6,11 @@ const path = require("path");
 const connectDB = require("./config/db");
 const User = require("./models/User");
 const dotenv = require("dotenv");
+const express = require("express");
+const compression = require("compression");
 
+// Bật nén Gzip/Brotli
+app.use(compression());
 // Load env vars
 dotenv.config();
 
