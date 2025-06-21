@@ -10,7 +10,7 @@
   --white: #ded2eb;
   --gradient-primary: linear-gradient(135deg, #593e67 0%, #de741c 100%);
   --gradient-secondary: linear-gradient(135deg, #84495f 0%, #fea837 100%);
-  --gradient-text: linear-gradient(135deg, #593e67 0%, #84495f 100%);
+  --gradient-text: linear-gradient(135deg, #c365c2 0%, #84495f 100%);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
@@ -87,7 +87,7 @@ body {
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 24px;
-  color: var(--neutral-dark);
+  color: #833a78;
 }
 
 .gradient-text {
