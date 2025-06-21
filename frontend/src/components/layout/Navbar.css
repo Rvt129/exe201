@@ -39,9 +39,10 @@
 }
 
 .navbar {
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 0 1.3rem; /* Adjusted padding */
   background: linear-gradient(135deg, #f7bf80 0%, #fff5b3 100%);
   position: sticky;
@@ -61,11 +62,14 @@
 }
 
 .navbar-center {
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 2;
 }
 
 .logo {
