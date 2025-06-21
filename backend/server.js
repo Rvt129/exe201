@@ -9,7 +9,6 @@ const dotenv = require("dotenv");
 const compression = require("compression");
 
 // Bật nén Gzip/Brotli
-app.use(compression());
 // Load env vars
 dotenv.config();
 
@@ -17,6 +16,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
+app.use(compression());
 
 // Middleware
 app.use(cors());
