@@ -415,13 +415,13 @@ function Home() {
           <span className="contact-tooltip">Chat Facebook</span>
         </a>
         <a
-          href="https://zalo.me/your-zalo-number"
+          href="https://www.instagram.com/your_pawpal?igsh=dXVpa296cTQwaTQ3"
           className="contact-icon zalo-icon"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Chat qua Zalo"
+          aria-label="Chat qua instagram"
         >
-          <i className="fas fa-comment-dots"></i>
+          <i class="fa-brands fa-instagram"></i>{" "}
           <span className="contact-tooltip">Chat Zalo</span>
         </a>
       </div>
