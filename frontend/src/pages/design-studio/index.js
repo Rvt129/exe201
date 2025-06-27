@@ -300,6 +300,26 @@ function Design() {
 
       setCanvas(fabricCanvasInstance);
 
+      // Khôi phục trạng thái thiết kế tạm nếu có
+      const tempDesignStr = localStorage.getItem("tempDesign");
+      if (tempDesignStr) {
+        try {
+          const tempDesign = JSON.parse(tempDesignStr);
+          if (tempDesign.objects) {
+            fabricCanvasInstance.loadFromJSON(tempDesign.objects, () => {
+              fabricCanvasInstance.renderAll();
+            });
+          }
+          // Khôi phục các state khác nếu cần
+          if (tempDesign.baseColor) setBaseColor(tempDesign.baseColor);
+          if (tempDesign.clothingType) setClothingType(tempDesign.clothingType);
+          // Xóa trạng thái tạm sau khi khôi phục
+          localStorage.removeItem("tempDesign");
+        } catch (e) {
+          console.error("Không thể khôi phục thiết kế tạm:", e);
+        }
+      }
+
       return () => {
         // Cleanup
         if (currentCanvasRef) {
@@ -707,16 +727,32 @@ function Design() {
         setShowConfirmPopup(false);
         try {
           const token = localStorage.getItem("token");
-        if (!token) {
-          alert("Vui lòng đăng nhập để lưu thiết kế!");
-          resolve(null);
-          navigate(
-            `/login?redirect=${encodeURIComponent(
-              window.location.pathname + window.location.search
-            )}`
-          );
-          return;
-        }
+          if (!token) {
+            alert("Vui lòng đăng nhập để lưu thiết kế!");
+            // Lưu trạng thái thiết kế tạm thời vào localStorage
+            try {
+              // Lưu các thông tin cần thiết, ví dụ: canvas data, màu áo, loại áo, v.v.
+              const designTemp = {
+                // Lưu lại các object trên canvas
+                objects: canvas.toDatalessJSON(),
+                // Lưu các state khác nếu cần
+                baseColor,
+                clothingType,
+                // ... các state khác nếu muốn
+              };
+              localStorage.setItem("tempDesign", JSON.stringify(designTemp));
+            } catch (e) {
+              // Nếu lỗi vẫn cho phép chuyển hướng
+              console.error("Không thể lưu trạng thái thiết kế tạm:", e);
+            }
+            resolve(null);
+            navigate(
+              `/login?redirect=${encodeURIComponent(
+                window.location.pathname + window.location.search
+              )}`
+            );
+            return;
+          }
           const cleanDesignImageBase64 = await generateCleanDesignBase64(
             canvas,
             designArea,
