@@ -61,7 +61,7 @@ function App() {
             {/* Protected Routes */}
             <Route
               path="/design"
-              element={<ProtectedRoute element={<DesignStudio />} />}
+              element={<DesignStudio />}
             />
             <Route
               path="/cart"
