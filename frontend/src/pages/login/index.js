@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useToastContext } from "../../contexts/ToastContext";
 import { saveUserSession, navigateByRole } from "../../utils/auth";
 import "./Login.css";
@@ -9,6 +9,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const { success, error: toastError } = useToastContext();
 
   const handleSubmit = async (e) => {
@@ -35,9 +36,16 @@ function Login() {
 
         success("Đăng nhập thành công!");
 
-        // Navigate based on user role
+        // Lấy redirect path từ query string (nếu có)
+        const params = new URLSearchParams(location.search);
+        const redirectPath = params.get("redirect");
+
         setTimeout(() => {
-          navigateByRole(data.role, navigate);
+          if (redirectPath) {
+            navigate(redirectPath, { replace: true });
+          } else {
+            navigateByRole(data.role, navigate);
+          }
         }, 1500);
       } else {
         toastError(data.message || "Đăng nhập thất bại");

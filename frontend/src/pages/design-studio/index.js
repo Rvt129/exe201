@@ -707,12 +707,16 @@ function Design() {
         setShowConfirmPopup(false);
         try {
           const token = localStorage.getItem("token");
-          if (!token) {
-            alert("Vui lòng đăng nhập để lưu thiết kế!");
-            resolve(null);
-            return;
-          }
-
+        if (!token) {
+          alert("Vui lòng đăng nhập để lưu thiết kế!");
+          resolve(null);
+          navigate(
+            `/login?redirect=${encodeURIComponent(
+              window.location.pathname + window.location.search
+            )}`
+          );
+          return;
+        }
           const cleanDesignImageBase64 = await generateCleanDesignBase64(
             canvas,
             designArea,
