@@ -259,6 +259,14 @@ const updateOrderStatus = async (req, res) => {
     order.fulfillment.status = status;
     order.metadata.updatedAt = Date.now();
 
+    // Nếu admin cập nhật trạng thái đã giao hàng thì tự động cập nhật payment.status
+    if (status === "delivered") {
+      order.payment.status = "completed";
+      if (!order.payment.paidAt) {
+        order.payment.paidAt = Date.now();
+      }
+    }
+
     // Set specific timestamps based on status
     if (status === "shipped" && !order.fulfillment.shippedAt) {
       order.fulfillment.shippedAt = Date.now();
